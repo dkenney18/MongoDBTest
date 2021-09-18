@@ -19,23 +19,23 @@ class Program
                 {"damage", 250},
                 {"tag", ItemTag.Item.ToString()}
                 };
+    ClearCollection();
     SetUpGameItems(registry);
     AddItems(registry);
-    AddItem(document);
+    //AddItem(document);
     //Get();
-    FindByName("Sticks");
-    Update(new List<DocumentUpdate> {
-      new DocumentUpdate("amount", 10000, "name", "Sticks"),
-      new DocumentUpdate("damage", 100000, "name", "Sticks")});
+    //FindByName("Sticks");
+    //Update(new List<DocumentUpdate> {
+      //new DocumentUpdate("amount", 10000, "name", "Sticks"),
+      //new DocumentUpdate("damage", 100000, "name", "Sticks")});
 
-    Update(new DocumentUpdate("value", 100, "name", "Sticks"));
+    //Update(new DocumentUpdate("value", 100, "name", "Sticks"));
 
-    FindByName("Sticks");
-    RemoveDocByName("Sticks");
-    FindByName("Sticks");
-    AddItem(registry.GetItemByName(ItemName.Sticks));
-    FindByName("Sticks");
-   ClearCollection();
+    //FindByName("Sticks");
+    //RemoveDocByName("Sticks");
+    //FindByName("Sticks");
+    //AddItem(registry.GetItemByName(ItemName.Sticks));
+    //FindByName("Sticks");
   }
 public static void AddItems(ItemRegistry registry)
         {
@@ -43,15 +43,14 @@ public static void AddItems(ItemRegistry registry)
     var collection = database.GetCollection<BsonDocument>("Items");
             foreach (var item in registry.Items())
             {
-                collection.InsertOne(new BsonDocument {
-                { "id", Guid.NewGuid().ToString("N")},
-                {"name", item.name.ToString() },
-                {"value", item.value},
-                {"amount", item.amount},
-                {"damage", item.damage},
-                {"tag", item.tag.ToString()}
-                }
-                );
+              var i = new Item {
+                Name = item.name.ToString(),
+                Value = item.value,
+                Amount = item.amount,
+                Damage = item.damage,
+                Tag = item.tag.ToString()
+                };
+                collection.InsertOne(i);
             }
         }
 public static void AddItem(BsonDocument doc)

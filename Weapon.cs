@@ -1,14 +1,29 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
- class Weapon : Item
+namespace ItemStoreForSimpleAdventureGame
+{
+    [BsonIgnoreExtraElements]
+    public class Weapon
     {
-        public bool canDualWield = false;
+        [JsonProperty]
+        public string Name { get; set; }
 
-        public Weapon(ItemName name, int value, int damage, int amount)
-        {
-            this.name = name;
-            this.value = value;
-            this.amount = amount;
-            this.damage = damage;
-            this.tag = ItemTag.Weapon;
-        }
+        [JsonProperty]
+        public int Value { get; set; }
+
+        [JsonProperty]
+        public int Amount { get; set; }
+
+        [JsonProperty]
+        public int Damage { get; set; }
+
+        [JsonProperty]
+        public string Tag { get; set; }
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
     }
+}

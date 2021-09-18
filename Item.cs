@@ -1,19 +1,29 @@
-using System;
- class Item
-    {
-        public ItemName name;
-        public int value;
-        public int damage;
-        public int amount;
-        public ItemTag tag;
-        public Item(ItemName name, int value, int damage, int amount)
-        {
-            this.name = name;
-            this.value = value;
-            this.amount = amount;
-            this.damage = damage;
-            this.tag = ItemTag.Item;
-        }
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
-        public Item() { }
+namespace ItemStoreForSimpleAdventureGame
+{
+    [BsonIgnoreExtraElements]
+    public class Item
+    {
+        [JsonProperty]
+        public string Name { get; set; }
+
+        [JsonProperty]
+        public int Value { get; set; }
+
+        [JsonProperty]
+        public int Amount { get; set; }
+
+        [JsonProperty]
+        public int Damage { get; set; }
+
+        [JsonProperty]
+        public string Tag { get; set; }
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
     }
+}

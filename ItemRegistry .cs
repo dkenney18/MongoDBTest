@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
         public Item GetItemByName(ItemName itemName)
         {
-            return items.Find(item => item.name.Equals(itemName));
+            return items.Find(item => item.Name.Equals(itemName));
         }
 
         public void AddItemToRegestry(Item item)
