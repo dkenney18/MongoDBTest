@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+
+
  class ItemRegistry
     {
         private readonly List<Item> items = new();
